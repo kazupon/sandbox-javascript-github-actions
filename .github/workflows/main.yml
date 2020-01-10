@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Hello world action step
       id: hello
-      uses: kazupon/sandbox-javascript-github-actions@v1
+      uses: kazupon/sandbox-javascript-github-actions@master
       with:
         who-to-greet: 'Mona the Octocat'
     # Use the output from the `hello` step
