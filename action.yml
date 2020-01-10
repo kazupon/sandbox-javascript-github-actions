@@ -1,19 +1,13 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'GitHub ssue Checker'
+description: 'GitHub issues checking'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
-    required: true
-    default: 'World'
   github-token:
-    description: The GitHub token used to create an authenticated client
+    description: 'The GitHub token used to create an authenticated client'
     required: true 
   labels:
-    description: 'issues labels, you can be specified multi labels with conmma'
+    description: 'GitHub issues labels, you can be specified multi labels with conmma'
     required: true
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
   count:
     description: 'Issue Count'
 runs:

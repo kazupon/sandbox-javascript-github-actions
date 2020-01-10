@@ -1,17 +1,15 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  issue:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: GitHub Issue checking
     steps:
-    - name: Hello world action step
-      id: hello
+    - name: GitHub Issue fetch
+      id: issue
       uses: kazupon/sandbox-javascript-github-actions@master
       with:
-        who-to-greet: 'Mona the Octocat'
         github-token: ${{ secrets.GITHUB_TOKEN }}
         labels: 'l10n'
-    # Use the output from the `hello` step
-    - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}, count ${{ steps.hello.outpus.count }}"
+    - name: l10n issue count
+      run: echo "l10n issue count ${{ steps.issue.outpus.count }}"
