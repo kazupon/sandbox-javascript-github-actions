@@ -513,10 +513,11 @@ async function main () {
   const labels = core.getInput('labels').split(',')
   const opts = {}
   const client = new GitHub(token, opts)
+  const { owner, repo } = context.repo
   const issues = await client.issues.listForRepo({
     labels,
-    owner: context.owner,
-    repo: context.repo,
+    owner,
+    repo
   })
   console.log('issues count', issues.count)
   const time = (new Date()).toTimeString()
