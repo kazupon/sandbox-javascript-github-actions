@@ -19,7 +19,6 @@ jobs:
         echo "l10n resource extracting !!" > locales/resource.txt
     - name: upload extracted l10n resource
       uses: actions/upload-artifact@v1
-      if: failure()
       with:
         name: l10n-resource
         path: locales
