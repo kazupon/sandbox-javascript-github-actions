@@ -11,15 +11,18 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         labels: 'l10n'
+    - run: mkdir -p locales
+    - run: echo hello > locales/ja.json
     - name: extract l10n resource from SFCs
       if: steps.issue.outputs.count > 0
       run: |
-        echo "l10n resource extracting !!" > resource.txt
+        echo "l10n resource extracting !!" > locales/resource.txt
     - name: upload extracted l10n resource
       uses: actions/upload-artifact@v1
+      if: failure()
       with:
         name: l10n-resource
-        path: resource.txt
+        path: locales
   push:
     name: push l10n resource to l10n service
     runs-on: ubuntu-latest
@@ -29,8 +32,8 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: l10n-resource
-    - run: |
-        cat l10n-resource/resource.txt
+    - run: cat l10n-resource/locales/ja.json
+    - run: cat l10n-resource/locales/resource.txt
     - name: import localization resource to l10n service
       run: |
         echo "upload l10n resource to l10n service!"
