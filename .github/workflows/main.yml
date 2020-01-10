@@ -5,7 +5,7 @@ jobs:
     name: extract l10n resource
     runs-on: ubuntu-latest
     steps:
-    - run: node -e "process.exit(1);"
+    - run: node -e "process.exit();"
     - name: check github issues count
       id: issue
       if: failure()
