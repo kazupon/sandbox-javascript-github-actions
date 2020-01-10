@@ -510,19 +510,20 @@ async function main () {
   console.log('context.owner', context.owner)
   console.log('context.repo', context.repo)
   const token = core.getInput('github-token', {required: true})
-  const labels = core.getInput('labels').split(',')
+  const labels = core.getInput('labels')
   const opts = {}
   const client = new GitHub(token, opts)
   const { owner, repo } = context.repo
   const issues = await client.issues.listForRepo({
     labels,
     owner,
-    repo
+    repo,
+    state: 'all'
   })
-  console.log('issues count', issues.length, issues)
+  console.log('issues count', issues.data.length, issues)
   const time = (new Date()).toTimeString()
   core.setOutput("time", time)
-  core.setOutput("count", issues.length)
+  core.setOutput("count", issues.data.length)
 }
 
 function handleError(err) {
