@@ -10,7 +10,8 @@ jobs:
       uses: kazupon/sandbox-javascript-github-actions@master
       with:
         who-to-greet: 'Mona the Octocat'
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        labeles: 'l10n'
     # Use the output from the `hello` step
     - name: Get the output time
-      if: steps.hello.outputs.count >= 0
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
+      run: echo "The time was ${{ steps.hello.outputs.time }}, count ${{ steps.hello.outpus.count }}"
