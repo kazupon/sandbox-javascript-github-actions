@@ -28,7 +28,7 @@ jobs:
     - name: Download l10n resource
       uses: actions/download-artifact@v1
       with:
-        name: 10n-resource
+        name: l10n-resource
     - name: import localization resource to l10n service
       run: |
         cat resource.txt
