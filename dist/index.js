@@ -510,12 +510,12 @@ async function main () {
   console.log('context.owner', context.owner)
   console.log('context.repo', context.repo)
   const token = core.getInput('github-token', {required: true})
-  const labels = core.getInput('labels')
+  const labels = core.getInput('labels').split(',')
   const opts = {}
   const client = new GitHub(token, opts)
   const { owner, repo } = context.repo
   const issues = await client.issues.listForRepo({
-    labels,
+    //labels,
     owner,
     repo,
     state: 'all'
