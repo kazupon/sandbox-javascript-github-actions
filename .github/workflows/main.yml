@@ -1,15 +1,34 @@
 on: [push]
 
 jobs:
-  issue:
+  extract:
+    name: extract l10n resource
     runs-on: ubuntu-latest
-    name: GitHub Issue checking
     steps:
-    - name: GitHub Issue fetch
+    - name: check github issues count
       id: issue
       uses: kazupon/sandbox-javascript-github-actions@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         labels: 'l10n'
-    - name: l10n issue count
-      run: echo "l10n issue count ${{ steps.issue.outputs.count }}"
+    - name: extract l10n resource from SFCs
+      if: steps.issue.outputs.count > 0
+      run: |
+        echo "l10n resource extracting !!" > resource.txt
+    - name: upload extracted l10n resource
+      uses: actions/upload-artifact@v1
+      with:
+        name: l10n-resource
+        path: resource.txt
+  push:
+    name: push l10n resource to l10n service
+    runs-on: ubuntu-latest
+    needs: [extract]
+    steps:
+    - name: Download l10n resource
+      uses: actions/download-artifact@v1
+      with:
+        name: 10n-resource
+    - name: import localization resource to l10n service
+      run: |
+        cat resource.txt
