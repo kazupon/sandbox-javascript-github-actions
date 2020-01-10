@@ -7,7 +7,7 @@ const { context, GitHub } = require('@actions/github')
     const nameToGreet = core.getInput('who-to-greet')
     console.log(`Hello ${nameToGreet}!`)
     const token = core.getInput('github-token', {required: true})
-    const labels = core.getInput('previews').split(',')
+    const labels = core.getInput('labels').split(',')
     const opts = {}
     const client = new GitHub(token, opts)
     const issues = await client.issues.list({ labels })
