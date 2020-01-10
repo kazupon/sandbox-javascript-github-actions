@@ -519,10 +519,10 @@ async function main () {
     owner,
     repo
   })
-  console.log('issues count', issues.count)
+  console.log('issues count', issues.length, issues)
   const time = (new Date()).toTimeString()
   core.setOutput("time", time)
-  core.setOutput("count", issues.count)
+  core.setOutput("count", issues.length)
 }
 
 function handleError(err) {
