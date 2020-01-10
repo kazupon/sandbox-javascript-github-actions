@@ -5,8 +5,10 @@ jobs:
     name: extract l10n resource
     runs-on: ubuntu-latest
     steps:
+    - run: node -e "process.exit(1);"
     - name: check github issues count
       id: issue
+      if: failure()
       uses: kazupon/sandbox-javascript-github-actions@master
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
