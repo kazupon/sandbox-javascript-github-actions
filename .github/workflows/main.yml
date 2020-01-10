@@ -12,4 +12,4 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         labels: 'l10n'
     - name: l10n issue count
-      run: echo "l10n issue count ${{ steps.issue.outpus.count }}"
+      run: echo "l10n issue count ${{ steps.issue.outputs.count }}"
